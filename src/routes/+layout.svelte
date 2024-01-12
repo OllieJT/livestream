@@ -1,4 +1,5 @@
 <script lang="ts">
+	import '@fontsource-variable/victor-mono';
 	import '../app.css';
 </script>
 
@@ -10,6 +11,5 @@
 	div {
 		position: fixed;
 		inset: 0px;
-		perspective: 500px;
 	}
 </style>

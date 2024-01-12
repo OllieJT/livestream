@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+dependencies:
+  '@fontsource-variable/victor-mono':
+    specifier: ^5.0.3
+    version: 5.0.3
+
 devDependencies:
   '@inqling/svelte-icons':
     specifier: ^4.0.2
@@ -74,6 +79,9 @@ devDependencies:
   svelte-typewriter:
     specifier: ^3.2.2
     version: 3.2.2(svelte@5.0.0-next.26)
+  sveltekit-sse:
+    specifier: ^0.5.3
+    version: 0.5.3(@microsoft/fetch-event-source@2.0.1)(@sveltejs/kit@2.0.6)(svelte@5.0.0-next.26)
   sveltekit-superforms:
     specifier: ^1.13.1
     version: 1.13.1(@sveltejs/kit@2.0.6)(svelte@5.0.0-next.26)(zod@3.22.4)
@@ -358,6 +366,10 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
 
+  /@fontsource-variable/victor-mono@5.0.3:
+    resolution: {integrity: sha512-vZWuwe0BAND2vsdTPwC+DlqifUyuWtHgX9l9jweZL+5ikfgO2SszDGBXVxbgwMtbHv4wsXwwI62cqfVOqcJj4w==}
+    dev: false
+
   /@humanwhocodes/config-array@0.11.13:
     resolution: {integrity: sha512-JSBDMiDKSzQVngfRjOdFXgFfklaXI4K9nLF49Auh21lmBWRLIK3+xTErTWD4KU54pb6coM6ESE7Awz/FNU3zgQ==}
     engines: {node: '>=10.10.0'}
@@ -426,6 +438,10 @@ packages:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.1
       '@jridgewell/sourcemap-codec': 1.4.15
+    dev: true
+
+  /@microsoft/fetch-event-source@2.0.1:
+    resolution: {integrity: sha512-W6CLUJ2eBMw3Rec70qrsEW0jOm/3twwJv21mrmj2yORiaVmVYGS4sSS5yUwvQc1ZlDLYGPnClVWmUUMagKNsfA==}
     dev: true
 
   /@nodelib/fs.scandir@2.1.5:
@@ -2667,6 +2683,18 @@ packages:
       locate-character: 3.0.0
       magic-string: 0.30.5
       zimmerframe: 1.1.0
+    dev: true
+
+  /sveltekit-sse@0.5.3(@microsoft/fetch-event-source@2.0.1)(@sveltejs/kit@2.0.6)(svelte@5.0.0-next.26):
+    resolution: {integrity: sha512-glaU94H7U6QWEvPubSLn//2Taf2FDDrbdYB46hS2cEoydMsFxzOvUjpBlJIpnMSZsL8qi8llSX3p9eqZTR7v0g==}
+    peerDependencies:
+      '@microsoft/fetch-event-source': ^2.0.1
+      '@sveltejs/kit': ^1.25.2 || ^2.0.0
+      svelte: ^4.0.0
+    dependencies:
+      '@microsoft/fetch-event-source': 2.0.1
+      '@sveltejs/kit': 2.0.6(@sveltejs/vite-plugin-svelte@3.0.1)(svelte@5.0.0-next.26)(vite@5.0.10)
+      svelte: 5.0.0-next.26
     dev: true
 
   /sveltekit-superforms@1.13.1(@sveltejs/kit@2.0.6)(svelte@5.0.0-next.26)(zod@3.22.4):

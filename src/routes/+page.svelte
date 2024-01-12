@@ -1,56 +1,52 @@
 <script lang="ts">
-	import FloatingPanel from '$src/components/floating-panel.svelte';
-	import { WEBSITE_NAME } from '$src/lib/constants';
+	import WidgetMode from '$src/routes/widget-mode.svelte';
+	import WidgetTime from '$src/routes/widget-time.svelte';
 
-	let nameplate = $state<HTMLDivElement>();
+	/*
+		import { source } from 'sveltekit-sse';
+		const value = source('/api');
+		value.subscribe((x) => console.log('value', x));
+	*/
 
-	$effect(() => {
-		const update_pos = setInterval(() => {
-			if (!nameplate) return;
-			// get the position of nameplate every second and log it to the console
-			const { x, y } = nameplate.getBoundingClientRect();
-			// console.log(`x: ${x}, y: ${y}`);
-			window.thing = nameplate;
-		}, 1000);
-
-		console.log(nameplate);
-
-		return () => clearInterval(update_pos);
-	});
+	const sampledate = new Date();
+	sampledate.setMinutes(sampledate.getMinutes() + 10);
+	sampledate.setSeconds(sampledate.getSeconds() + 30);
 </script>
 
 <svelte:head>
-	<title>Hello World | {WEBSITE_NAME}</title>
+	<title>Status Bar | OllieJT</title>
 </svelte:head>
 
-<FloatingPanel align="left">
-	<div class="flex items-start gap-2">
-		<div
-			class="rounded-lg bg-white p-4 text-xl font-bold leading-none tracking-wide text-black"
-			bind:this={nameplate}
-			id="hello"
-		>
-			OllieJT
-		</div>
-		<div
-			class="rounded-lg bg-mono-800 p-4 text-xl leading-none tracking-wide text-mono-200"
-			bind:this={nameplate}
-			id="hello"
-		>
-			Designer &amp; Developer
-		</div>
-	</div>
-</FloatingPanel>
+<div class="p-4">
+	<nav class="grid w-full grid-cols-3 gap-4 rounded-3xl p-2">
+		<!--  -->
 
-<FloatingPanel align="right">
-	<div
-		class="flex flex-col items-stretch space-y-2 rounded-lg bg-mono-950 p-4 ring-1 ring-mono-800"
-	>
-		<div class="text-xs font-bold uppercase tracking-widest text-white">Current Focus</div>
-		<hr class="border-b-0 border-t-2 border-mono-900" />
-		<div class="wrap-balance max-w-80 pr-4 text-lg tracking-wide text-mono-300">
-			Some really long text explaining what we're doing. Some really long text explaining what we're
-			doing.
+		<!--  -->
+		<div class="flex items-center justify-start">
+			<!-- <div class="px-4">
+				<div class="flex h-7 w-10 items-center justify-center rounded-lg bg-white/10">UK</div>
+			</div> -->
+			<WidgetTime />
 		</div>
-	</div>
-</FloatingPanel>
+
+		<!--  -->
+		<div class="grid place-items-center text-center">
+			<span class="tracking-widest opacity-50">olliejt.app</span>
+		</div>
+
+		<div class="flex items-center justify-end">
+			<WidgetMode color="GREEN">Talking</WidgetMode>
+
+			<!-- <WidgetCountdown datetime={sampledate} /> -->
+		</div>
+	</nav>
+</div>
+
+<style>
+	nav {
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		background: linear-gradient(270deg, rgba(38, 38, 38, 0.5) 0%, rgba(38, 38, 38, 0) 100%),
+			linear-gradient(180deg, rgba(38, 38, 38, 0.5) 0%, rgba(38, 38, 38, 0) 50%), #1a1a1a;
+		box-shadow: 0px 0px 1px 1px #000;
+	}
+</style>

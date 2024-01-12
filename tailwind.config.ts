@@ -4,6 +4,7 @@ import defaultTheme from 'tailwindcss/defaultTheme';
 import plugin from 'tailwindcss/plugin';
 
 const font_sans = ['Satoshi-Variable', 'InterVariable', ...defaultTheme.fontFamily.sans];
+const font_mono = ['Victor Mono Variable', ...defaultTheme.fontFamily.mono];
 
 export default {
 	darkMode: 'media',
@@ -12,6 +13,7 @@ export default {
 		extend: {
 			fontFamily: {
 				sans: font_sans.toString(),
+				mono: font_mono.toString(),
 			},
 			colors: {
 				white: '#fff',
