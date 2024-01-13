@@ -1,7 +1,9 @@
 <script lang="ts">
 	import { onDestroy } from 'svelte';
+	import { writable } from 'svelte/store';
+	import WidgetCountdownChunk from './widget-countdown-chunk.svelte';
 
-	const { datetime } = $props<{ datetime: Date }>();
+	export let datetime: Date;
 
 	// calculate the difference between the current time and the target time in seconds
 	function diff_in_seconds(d: Date) {
@@ -28,28 +30,20 @@
 		return { minutes: format_number(ms.minutes), seconds: format_number(ms.seconds) };
 	}
 
-	let countdown = $state(time_until(datetime));
+	let countdown = writable(time_until(datetime));
 
-	const interval = setInterval(() => (countdown = time_until(datetime)), 1000);
+	const interval = setInterval(() => countdown.set(time_until(datetime)), 1000);
 	onDestroy(() => clearInterval(interval));
 </script>
-
-{#snippet chunk({value}:{value:string})}
-	<div
-		class="flex h-12 w-10 items-center justify-center rounded-lg bg-white/5 text-center ring-1 ring-white/10"
-	>
-		<span class="">{value}</span>
-	</div>
-{/snippet}
 
 <div
 	class="flex w-max items-center gap-1.5 rounded-2xl px-2 text-center text-xl font-medium uppercase leading-none tracking-widest"
 >
-	{#each countdown.minutes as minute}
-		{@render chunk({ value: minute })}
+	{#each $countdown.minutes as minute}
+		<WidgetCountdownChunk>{minute}</WidgetCountdownChunk>
 	{/each}
 	<span class="-ml-0.5 -mr-1 block opacity-50">:</span>
-	{#each countdown.seconds as second}
-		{@render chunk({ value: second })}
+	{#each $countdown.seconds as second}
+		<WidgetCountdownChunk>{second}</WidgetCountdownChunk>
 	{/each}
 </div>

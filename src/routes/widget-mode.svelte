@@ -1,11 +1,8 @@
 <script lang="ts">
 	import type { LivestreamParams } from '$src/routes/schema';
-	import type { Snippet } from 'svelte';
 	import { twMerge } from 'tailwind-merge';
 
-	type Color = 'YELLOW' | 'GREEN' | 'PURPLE' | 'ORANGE';
-
-	const { color, children } = $props<{ color: LivestreamParams['color']; children: Snippet }>();
+	export let color: LivestreamParams['color'];
 </script>
 
 <svelte:head>
@@ -22,6 +19,6 @@
 	)}
 >
 	<span class="uppercase tracking-widest">
-		{@render children()}
+		<slot />
 	</span>
 </div>

@@ -1,10 +1,16 @@
 <script lang="ts">
 	import { format } from 'date-fns';
-	let datetime = $state(Date.now());
-	const interval = setInterval(() => (datetime = Date.now()), 1000);
+	import { onDestroy } from 'svelte';
+	import { writable } from 'svelte/store';
 
-	const time = $derived(format(new Date(datetime), 'h:mm'));
-	const ordinal = $derived(format(new Date(datetime), 'a'));
+	let datetime = writable(Date.now());
+
+	const interval = setInterval(() => datetime.set(Date.now()), 1000);
+
+	onDestroy(() => clearInterval(interval));
+
+	$: time = format(new Date($datetime), 'h:mm');
+	$: ordinal = format(new Date($datetime), 'a');
 </script>
 
 <div
@@ -17,12 +23,3 @@
 		<span class="left-full text-xl opacity-50">{ordinal}</span>
 	</span>
 </div>
-
-<style>
-	nav {
-		border: 1px solid rgba(255, 255, 255, 0.1);
-		background: linear-gradient(270deg, rgba(38, 38, 38, 0.5) 0%, rgba(38, 38, 38, 0) 100%),
-			linear-gradient(180deg, rgba(38, 38, 38, 0.5) 0%, rgba(38, 38, 38, 0) 50%), #1a1a1a;
-		box-shadow: 0px 0px 1px 1px #000;
-	}
-</style>

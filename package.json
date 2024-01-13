@@ -23,7 +23,6 @@
 	},
 	"devDependencies": {
 		"@fontsource-variable/victor-mono": "^5.0.3",
-		"@inqling/svelte-icons": "^4.0.2",
 		"@sveltejs/adapter-auto": "^3.1.0",
 		"@sveltejs/adapter-node": "^3.0.0",
 		"@sveltejs/adapter-static": "^3.0.1",
@@ -46,7 +45,7 @@
 		"prettier-plugin-tailwindcss": "^0.5.11",
 		"prettier": "^3.2.1",
 		"svelte-check": "^3.6.3",
-		"svelte": "^5.0.0-next.34",
+		"svelte": "^4.2.8",
 		"tailwind-merge": "2.2.0",
 		"tailwindcss": "^3.4.1",
 		"tslib": "^2.6.2",
