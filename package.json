@@ -53,5 +53,8 @@
 		"vite": "^5.0.11",
 		"zod": "^3.22.4"
 	},
-	"type": "module"
+	"type": "module",
+	"engines": {
+		"node": ">=18.0.0"
+	}
 }
