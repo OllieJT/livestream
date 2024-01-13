@@ -1,17 +1,20 @@
 <script lang="ts">
+	import { timer } from '$src/routes/sse-timer';
+	import WidgetCountdown from '$src/routes/widget-countdown.svelte';
 	import WidgetMode from '$src/routes/widget-mode.svelte';
 	import WidgetTime from '$src/routes/widget-time.svelte';
-	import { source } from 'sveltekit-sse';
+	import { onMount } from 'svelte';
 	import type { PageServerData } from './$types';
 
 	export let data: PageServerData;
 
-	const value = source('/api');
-	value.subscribe((x) => console.log('value', x));
+	/*  */
+	/*  */
+	/*  */
 
-	const sampledate = new Date();
-	sampledate.setMinutes(sampledate.getMinutes() + 10);
-	sampledate.setSeconds(sampledate.getSeconds() + 30);
+	onMount(() => {
+		timer.connect();
+	});
 </script>
 
 <svelte:head>
@@ -33,13 +36,13 @@
 		<!--  -->
 		<div class="grid place-items-center text-center">
 			<span class="tracking-widest opacity-50">olliejt.app</span>
-			<span class="tracking-widest opacity-50">{$value}</span>
 		</div>
 
 		<div class="flex items-center justify-end">
 			<WidgetMode color={data.color}>{data.mode}</WidgetMode>
-
-			<!-- <WidgetCountdown datetime={sampledate} /> -->
+			{#if $timer}
+				<WidgetCountdown datetime={$timer} />
+			{/if}
 		</div>
 	</nav>
 </div>
