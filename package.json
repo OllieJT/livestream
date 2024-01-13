@@ -12,7 +12,7 @@
 		"dev": "vite dev",
 		"format": "prettier --write .",
 		"lint": "prettier --check . && eslint .",
-		"preview": "vite preview",
+		"preview": "vite preview --host",
 		"sync": "svelte-kit sync",
 		"vercel": "npx vercel env pull .env.development && npx vercel env pull .env.production  --environment production",
 		"prepare": "husky install",
