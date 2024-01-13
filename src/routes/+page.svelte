@@ -1,15 +1,13 @@
 <script lang="ts">
 	import WidgetMode from '$src/routes/widget-mode.svelte';
 	import WidgetTime from '$src/routes/widget-time.svelte';
+	import { source } from 'sveltekit-sse';
 	import type { PageServerData } from './$types';
 
 	export let data: PageServerData;
 
-	/*
-		import { source } from 'sveltekit-sse';
-		const value = source('/api');
-		value.subscribe((x) => console.log('value', x));
-	*/
+	const value = source('/api');
+	value.subscribe((x) => console.log('value', x));
 
 	const sampledate = new Date();
 	sampledate.setMinutes(sampledate.getMinutes() + 10);
@@ -35,6 +33,7 @@
 		<!--  -->
 		<div class="grid place-items-center text-center">
 			<span class="tracking-widest opacity-50">olliejt.app</span>
+			<span class="tracking-widest opacity-50">{$value}</span>
 		</div>
 
 		<div class="flex items-center justify-end">
