@@ -10,11 +10,15 @@ function delay(milliseconds: number) {
 }
 
 export const GET: RequestHandler = async () => {
-	return event(async function run(emit) {
+	const response = event(async function run(emit) {
 		// eslint-disable-next-line no-constant-condition
 		while (true) {
 			emit(`${Date.now()}`);
 			await delay(1000);
 		}
 	}).toResponse();
+
+	response.headers.set('Access-Control-Allow-Origin', '*');
+
+	return response;
 };
