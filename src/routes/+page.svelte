@@ -1,6 +1,9 @@
 <script lang="ts">
 	import WidgetMode from '$src/routes/widget-mode.svelte';
 	import WidgetTime from '$src/routes/widget-time.svelte';
+	import type { PageServerData } from './$types';
+
+	export let data: PageServerData;
 
 	/*
 		import { source } from 'sveltekit-sse';
@@ -35,7 +38,7 @@
 		</div>
 
 		<div class="flex items-center justify-end">
-			<WidgetMode color="GREEN">Talking</WidgetMode>
+			<WidgetMode color={data.color}>{data.mode}</WidgetMode>
 
 			<!-- <WidgetCountdown datetime={sampledate} /> -->
 		</div>

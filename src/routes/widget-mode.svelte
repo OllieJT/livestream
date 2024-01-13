@@ -1,10 +1,11 @@
 <script lang="ts">
+	import type { LivestreamParams } from '$src/routes/schema';
 	import type { Snippet } from 'svelte';
 	import { twMerge } from 'tailwind-merge';
 
 	type Color = 'YELLOW' | 'GREEN' | 'PURPLE' | 'ORANGE';
 
-	const { color, children } = $props<{ color: Color; children: Snippet }>();
+	const { color, children } = $props<{ color: LivestreamParams['color']; children: Snippet }>();
 </script>
 
 <svelte:head>
